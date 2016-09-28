@@ -1,0 +1,62 @@
+{% load i18n %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Story about my travels."/>
+    <meta name="robots" content="noindex,nofollow"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAQAAABKfvVzAAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfgCRYSFQpqMKMEAAADK0lEQVQ4y2WRS2hcBRSGv/uYV8Y0ySSaEpNoExMTtJXWVzEt1o1Ntu66SaiCC/ugCuKmWISC4MaCCwsigohoW0QQSkb6sMXW2Bqd2KYZO6Y1dyaTx6Qzk8ncuY+5c4+bSWjp+bfn4/z/fxTqc5TjbFM+Cif6uvZ2PB9pB2spO5mOb08ds6fkKMe5b/ZgAKOxU2PnE3elIAUpSF4KUpBZOZc4M/ZWDNLsWV8f4W/gyK6JcUMsyYkhhixITpYlLXOSlptycfzQKyDsAtjJGeDwPiNjiiPzkpSk5MQSR2wxZU1KUpaSpNMf7gdhJ5wE3ts9MV8WU6bluqTkljhiP6TM0rGRuqU3Hpu8eEeK8qtckCkxxRVLKmI9pMRvb3aCNqgeGNv6zhwpHIQAMVZwqKID4ANSV7gzlF28pn0c7fmqvzXJGi4BBqlQYYl/qWDQQAR/A4iwOtDypT41uKXvLEVcQKgSpYk2PIQIaR4BFASAKr3dp7fr2mvT+ASoIfTQjIePzlZAAB+FMg31tE30Duuyo4QC6ITow8O//6M45BHKNBJEpUbnC/qd9hwtRNB5mjZMlAcAlww7aOQznmMLAWjWXTLMsokGOvCooTyAhHDIssAFZngGod1X+3Mn6KFIgT8BFwcbBwcbGxuPJ7jNN+QpkcNjflEt/tXNXjZRJcW3hOtR18v0iTFEBSgwyYssXNd2W5vffokAN/EoYnODMh0bthRUfuA2VRzWWGT5A7VjxkjCfjajsUqcPzjNDKE64HOZKwQIAkGSU5kb6id2/sQK9zAJESKMSgOXWa3fqDBBK2GC6KhEPn3KUVf9Uz8al1RcLExsXIQVKiiAyj2G2YaJhYMSb/rpO9He5Xuzcjf2+qVGr25DQ6efNoQinzPAzyxiomaaD5xNDaPBKF/M/TOvvlxr8qjh4eORZwA4icFVlrBR063vx+Ovch4tQ54hfpl+9vdat99bpYqDkGWWKyRwsfDRzrUcjI+Pco3yen9KVKKPdz06Eh71+zw0gvhUAR01Vfl6eTybUSwpIWwUHqWZsBYMh7uebBlSBtU2kBV/pnjV+M+2ay4OJUoI/A81n7niIkPbeQAAAABJRU5ErkJggg==" rel="icon" type="image/x-icon" />
+    <title>{% block title %}{% trans "Jess blog" %}{% endblock %}</title>
+
+    <!--Import Google Icon Font-->
+    <!--<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
+    <!-- Materialize included -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper">
+        <a href="{% url 'homepage' %}" class="brand-logo ajax-link">{% trans "Jess blog" %}</a>
+        <ul class="right hide-on-med-and-down">
+          {% if user.is_superuser %}
+            <li><a href="/admin/post/post/add/" class="right">{% trans "New post" %}</a></li>
+          {% endif %}
+          <li><a href="{% url 'about' %}" class="{% if active_page == 'about' %}active{% endif %} ajax-link">{% trans "About me" %}</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+    <div id="index-banner" class="parallax-container">
+      <div class="parallax"><img src="{% static 'img/map.jpg' %}" alt="Map background"></div>
+    </div>
+
+
+    <div id="content" class="container">
+      {% block content %}{% endblock %}
+    </div>
+
+    <footer class="page-footer teal">
+      <div class="footer-copyright">
+        <div class="container">
+        {% trans "Made by" %} <a class="brown-text text-lighten-3" href="mailto:mriynuk@gmail.com">Mike</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Include js -->
+    <script type="text/javascript" src="{% static 'js/all.js' %}"></script>
+  </body>
+</html>

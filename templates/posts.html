@@ -1,0 +1,34 @@
+{% extends parent_template %}
+{% load i18n %}
+{% block content %}
+  <div class="posts section infinite-scroll">
+    {% for post in posts %}
+      <div class="post row">
+        <div class="col m12">
+          <div class="card grey lighten-5">
+            <div class="card-content">
+              <a href="{% url 'post' post.slug %}" class="ajax-link">
+                <h5 class="card-title">{{ post.title }}</h5>
+              </a>
+
+              {% if full_text %}
+                <p class="light">{{ post.text|safe }}</p>
+              {% else %}
+                <p class="light">{{ post.text|truncatechars_html:300|safe }}</p>
+              {% endif %}
+            </div>
+            <div class="card-action">
+              {% for category in post.categories.all %}
+                <a href="{% url 'category' category.slug %}" class="ajax-link">{{ category.name }}</a>
+              {% endfor %}
+              {% if user.is_superuser %}
+                <a href="/admin/post/post/{{ post.id }}/change/" class="right">{% trans "Edit" %}</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+    {% include "pagination.html" with objects=posts %}
+  </div>
+{% endblock %}
