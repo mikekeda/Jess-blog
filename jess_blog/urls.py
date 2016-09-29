@@ -20,13 +20,13 @@ from post.views import homepage, post, categoty, about
 
 urlpatterns = [
     url(r'^$', homepage, name='homepage'),
-    url(r'^ajax$', homepage, name='ajax_homepage'),
-    url(r'^post/(?P<post_slug>.+)$', post, name='post'),
-    url(r'^ajax/post/(?P<post_slug>.+)$', post, name='ajax_post'),
-    url(r'^category/(?P<category_slug>.+)$', categoty, name='category'),
-    url(r'^ajax/category/(?P<category_slug>.+)$', categoty, name='ajax_category'),
-    url(r'^about$', about, name='about'),
-    url(r'^ajax/about$', about, name='ajax_about'),
+    url(r'^ajax/$', homepage, name='ajax_homepage'),
+    url(r'^post/(?P<post_slug>.+)/$', post, name='post'),
+    url(r'^ajax/post/(?P<post_slug>.+)/$', post, name='ajax_post'),
+    url(r'^category/(?P<category_slug>.+)/$', categoty, name='category'),
+    url(r'^ajax/category/(?P<category_slug>.+)/$', categoty, name='ajax_category'),
+    url(r'^about/$', about, name='about'),
+    url(r'^ajax/about/$', about, name='ajax_about'),
 
     url(r'^admin/', admin.site.urls),
 ]

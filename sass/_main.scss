@@ -1,4 +1,10 @@
 body {
+  &.js {
+    .js-hide {
+      display: none;
+    }
+  }
+
   .nav-wrapper {
     .brand-logo {
       padding-left: 15px;

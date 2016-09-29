@@ -1,6 +1,6 @@
 {% load i18n %}
 {% if objects.object_list and objects.paginator.num_pages > 1 %}
-<div class="pagination">
+<div class="pagination js-hide">
     <span class="step-links">
         {% if objects.has_previous %}
             <a href= "?{% if page_name %}{{ page_name }}{% else %}page{% endif %}={{ objects.previous_page_number }}{% if page_hash %}#{{ page_hash }}{% endif %}">{% trans "Previous" %} &lt;&lt; </a>

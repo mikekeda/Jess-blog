@@ -38,6 +38,8 @@ $(document).ready(function() {
     $link.parent('li').addClass('active');
   }
 
+  $('body').addClass('js')
+
   /* Process ajax links */
   $(document).on('click', 'a.ajax-link', function(event) {
     event.preventDefault();

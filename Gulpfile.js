@@ -63,7 +63,7 @@ gulp.task('sass', function () {
     }))
     .pipe(uncss({
         html: ['templates/*.html'],
-        ignore: [new RegExp('.active$')]
+        ignore: [new RegExp('.active$'), new RegExp('.js-*')]
     }))
     .pipe(minifycss())
     .pipe(gulp.dest('static/css'))
