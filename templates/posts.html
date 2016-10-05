@@ -8,7 +8,7 @@
           <div class="card grey lighten-5">
             <div class="card-image">
               <div class="carousel carousel-slider center" data-indicators="true">
-              {% for photo in post.photos.all %}
+              {% for photo in post.photos.all reversed %}
                 <div class="carousel-item">
                   <img src="{{ photo.image.url }}" alt="{{ photo.title }}">
                   <div class="caption center-align">
