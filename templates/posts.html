@@ -4,13 +4,15 @@
   <div class="posts infinite-scroll">
     {% for post in posts %}
       <div class="post row">
-        <div class="col m12">
+        <div class="col s12">
           <div class="card grey lighten-5">
-            <div class="card-content">
+            <div class="card-image">
               <a href="{% url 'post' post.slug %}" class="ajax-link">
-                <h5 class="card-title">{{ post.title }}</h5>
+                <img src="{{ post.image.url }}">
+                <span class="card-title">{{ post.title }}</span>
               </a>
-
+            </div>
+            <div class="card-content">
               {% if full_text %}
                 <p class="light">{{ post.text|safe }}</p>
               {% else %}

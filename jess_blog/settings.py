@@ -26,6 +26,7 @@ SECRET_KEY = '$u-s-u(o5@kdv3-rwe%aaw&o@2*)bkkc6blipc^7%jqpiu-g@n'
 DEBUG = True
 
 INTERNAL_IPS = (
+    '0.0.0.0',
     '127.0.0.1',
 )
 
@@ -85,8 +86,12 @@ WSGI_APPLICATION = 'jess_blog.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'jess_blog',
+        'USER': 'jess',
+        'PASSWORD': 'jessHiddleston20!',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
@@ -135,3 +140,7 @@ STATICFILES_DIRS = (
 )
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+MEDIA_URL = '/media/'
