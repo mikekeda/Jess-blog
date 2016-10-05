@@ -38,6 +38,23 @@ $(document).ready(function() {
     $link.parent('li').addClass('active');
   }
 
+  function initialize_js () {
+    /* Materialize */
+    // Parallax.
+    $('.parallax').parallax();
+    // Slider.
+    $('.carousel.carousel-slider').carousel({full_width: true});
+
+    /* Infinite scroll */
+    $('.infinite-scroll:visible').jscroll({
+      loadingHtml: '<span>Loading...</span>',
+      padding: 50,
+      nextSelector: 'a.jscroll-next',
+      pagingSelector: '.pagination',
+      debug: true
+    });
+  }
+
   $('body').addClass('js');
 
   /* Process ajax links */
@@ -51,6 +68,7 @@ $(document).ready(function() {
       })
       .done(function(data) {
         $('#content').html(data);
+        initialize_js();
         set_active_link($link.attr("href"));
         $(".modal-backdrop.in").remove();
         history.pushState({content: data}, null, $link.attr("href"));
@@ -65,22 +83,10 @@ $(document).ready(function() {
   $(window).on("popstate", function(event) {
     if (event.originalEvent.state.content !== null) {
       $('#content').html(event.originalEvent.state.content);
+      initialize_js();
       set_active_link (window.location.pathname);
     }
   });
 
-  /* Materialize */
-  // Parallax.
-  $('.parallax').parallax();
-  // Slider.
-  $('.carousel.carousel-slider').carousel({full_width: true});
-
-  /* Infinite scroll */
-  $('.infinite-scroll:visible').jscroll({
-    loadingHtml: '<span>Loading...</span>',
-    padding: 50,
-    nextSelector: 'a.jscroll-next',
-    pagingSelector: '.pagination',
-    debug: true
-   });
+  initialize_js();
 });
