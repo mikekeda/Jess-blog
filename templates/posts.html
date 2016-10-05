@@ -7,8 +7,18 @@
         <div class="col s12">
           <div class="card grey lighten-5">
             <div class="card-image">
+              <div class="carousel carousel-slider center" data-indicators="true">
+              {% for photo in post.photos.all %}
+                <div class="carousel-item">
+                  <img src="{{ photo.image.url }}" alt="{{ photo.title }}">
+                  <div class="caption center-align">
+                    <h3 class="white-text">{{ photo.title }}</h3>
+                    <h5 class="light grey-text text-lighten-3">{{ photo.description }}</h5>
+                  </div>
+                </div>
+              {% endfor %}
+              </div>
               <a href="{% url 'post' post.slug %}" class="ajax-link">
-                <img src="{{ post.image.url }}">
                 <span class="card-title">{{ post.title }}</span>
               </a>
             </div>

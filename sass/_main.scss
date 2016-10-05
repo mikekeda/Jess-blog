@@ -16,6 +16,14 @@ body {
     text-decoration: underline;
   }
 
+  .carousel {
+    .caption {
+      position: absolute;
+      top: 50px;
+      width: 100%;
+    }
+  }
+
   .page-footer {
     padding: 0;
   }

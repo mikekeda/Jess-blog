@@ -6,7 +6,7 @@ from post.models import Post
 def homepage(request):
     """Main page."""
 
-    posts = Post.objects.order_by('-id').prefetch_related('categories')
+    posts = Post.objects.order_by('-id').prefetch_related('categories').prefetch_related('photos')
     paginator = Paginator(posts, 10)
 
     page = request.GET.get('page')
@@ -25,7 +25,7 @@ def homepage(request):
 def categoty(request, category_slug):
     """Post for specific category."""
 
-    posts = Post.objects.filter(categories__slug=category_slug).order_by('-id').prefetch_related('categories')
+    posts = Post.objects.filter(categories__slug=category_slug).order_by('-id').prefetch_related('categories').prefetch_related('photos')
 
     return render(request, 'posts.html', dict(posts=posts, user=request.user))
 
@@ -33,7 +33,7 @@ def categoty(request, category_slug):
 def post(request, post_slug):
     """Post for specific category."""
 
-    post = get_object_or_404(Post, slug=post_slug)
+    post = get_object_or_404(Post.objects.prefetch_related('categories').prefetch_related('photos'), slug=post_slug)
 
     return render(request, 'posts.html', dict(posts=[post], user=request.user, full_text=True))
 

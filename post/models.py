@@ -27,7 +27,6 @@ class Category(models.Model):
 class Post(models.Model):
     """Post model"""
     title = models.CharField(max_length=60, unique=True)
-    image = models.ImageField(upload_to='photos')
     text = models.TextField(blank=True, null=True)
     categories = models.ManyToManyField(Category, related_name='category')
     created_date = models.DateTimeField(auto_now_add=True)
@@ -44,3 +43,13 @@ class Post(models.Model):
         return u'%s' % (
             self.title,
         )
+
+
+class Photo(models.Model):
+    """Photo model"""
+    title = models.CharField(max_length=60)
+    description = models.TextField(blank=True, null=True)
+    image = models.ImageField(upload_to='photos')
+    post = models.ForeignKey(Post, related_name='photos')
+    created_date = models.DateTimeField(auto_now_add=True)
+    changed_date = models.DateTimeField(auto_now=True)

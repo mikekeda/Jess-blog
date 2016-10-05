@@ -1,11 +1,15 @@
 from django.contrib import admin
 from django.db import models
 from django import forms
-from post.models import Category, Post
+from post.models import Category, Post, Photo
 
+
+class PhotoInline(admin.TabularInline):
+    model = Photo
 
 class PostAdmin(admin.ModelAdmin):
     formfield_overrides = {models.TextField: {'widget': forms.Textarea(attrs={'class':'ckeditor'})},}
+    inlines = (PhotoInline,)
 
     class Media:
         js = ('bower_components/ckeditor/ckeditor.js',)

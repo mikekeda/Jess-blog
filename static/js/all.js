@@ -38,7 +38,7 @@ $(document).ready(function() {
     $link.parent('li').addClass('active');
   }
 
-  $('body').addClass('js')
+  $('body').addClass('js');
 
   /* Process ajax links */
   $(document).on('click', 'a.ajax-link', function(event) {
@@ -69,8 +69,13 @@ $(document).ready(function() {
     }
   });
 
+  /* Materialize */
+  // Parallax.
   $('.parallax').parallax();
+  // Slider.
+  $('.carousel.carousel-slider').carousel({full_width: true});
 
+  /* Infinite scroll */
   $('.infinite-scroll:visible').jscroll({
     loadingHtml: '<span>Loading...</span>',
     padding: 50,
