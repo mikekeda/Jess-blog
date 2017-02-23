@@ -3,4 +3,5 @@ db.sqlite3
 node_modules/
 staticfiles/
 media/
+jess_blog/settings.py
 *.pyc
