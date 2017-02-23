@@ -18,7 +18,7 @@ class Category(models.Model):
 
         super(Category, self).save(*args, **kwargs)
 
-    def __unicode__(self):
+    def __str__(self):
         return u'%s' % (
             self.name,
         )
