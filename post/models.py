@@ -26,16 +26,24 @@ class Category(models.Model):
 
 class Post(models.Model):
     """Post model"""
-    title = models.CharField(max_length=60, unique=True)
+    title = models.CharField(max_length=100)
     text = models.TextField(blank=True, null=True)
     categories = models.ManyToManyField(Category, related_name='category')
     created_date = models.DateTimeField(auto_now_add=True)
     changed_date = models.DateTimeField(auto_now=True)
-    slug = models.SlugField(editable=False)
+    slug = models.SlugField(unique=True, editable=False)
+
+    def _get_unique_slug(self):
+        unique_slug = slug = slugify(self.title)
+        num = 1
+        while Post.objects.filter(slug=unique_slug).exists():
+            unique_slug = '{}-{}'.format(slug, num)
+            num += 1
+        return unique_slug
 
     def save(self, *args, **kwargs):
         if not self.id:
-            self.slug = slugify(self.title)
+            self.slug = self._get_unique_slug()
 
         super(Post, self).save(*args, **kwargs)
 

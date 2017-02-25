@@ -21,7 +21,16 @@ body {
       position: absolute;
       top: 50px;
       width: 100%;
+      h5 {
+        margin-top: 50px;
+      }
     }
+  }
+
+  .image-caption:not(:empty) {
+    padding: 10px 30px;
+    border-radius: 5px;
+    background-color: rgba(#333, 0.5);
   }
 
   .page-footer {

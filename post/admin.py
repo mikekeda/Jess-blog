@@ -6,6 +6,8 @@ from post.models import Category, Post, Photo
 
 class PhotoInline(admin.TabularInline):
     model = Photo
+    min_num = 1
+    extra = 0
 
 class PostAdmin(admin.ModelAdmin):
     formfield_overrides = {models.TextField: {'widget': forms.Textarea(attrs={'class':'ckeditor'})},}

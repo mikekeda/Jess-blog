@@ -12,14 +12,14 @@
                 <div class="carousel-item">
                   <img src="{{ photo.image.url }}" alt="{{ photo.title }}">
                   <div class="caption center-align">
-                    <h3 class="white-text">{{ photo.title }}</h3>
-                    <h5 class="light grey-text text-lighten-3">{{ photo.description }}</h5>
+                    <h3 class="white-text"><span class="image-caption">{{ photo.title }}</span></h3>
+                    <h5 class="light grey-text text-lighten-3"><span class="image-caption">{{ photo.description }}</span></h5>
                   </div>
                 </div>
               {% endfor %}
               </div>
               <a href="{% url 'post' post.slug %}" class="ajax-link">
-                <span class="card-title">{{ post.title }}</span>
+                <span class="card-title image-caption">{{ post.title }}</span>
               </a>
             </div>
             <div class="card-content">
