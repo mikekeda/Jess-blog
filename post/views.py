@@ -41,4 +41,4 @@ def post(request, post_slug):
 def about(request):
     """About page."""
 
-    return render(request, 'base.html', dict(active_page="about"))
+    return render(request, 'about.html', dict(active_page="about"))
