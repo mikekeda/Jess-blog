@@ -6,7 +6,13 @@ from post.models import Post
 def homepage(request):
     """Main page."""
 
-    posts = Post.objects.order_by('-id').prefetch_related('categories').prefetch_related('photos')
+    allowed_visibilities = ['all']
+    if request.user.is_authenticated:
+        allowed_visibilities.append('user')
+    if request.user.is_superuser:
+        allowed_visibilities.append('admin')
+
+    posts = Post.objects.filter(visibility__in=allowed_visibilities).order_by('-id').prefetch_related('categories').prefetch_related('photos')
     paginator = Paginator(posts, 10)
 
     page = request.GET.get('page')
@@ -25,7 +31,13 @@ def homepage(request):
 def categoty(request, category_slug):
     """Post for specific category."""
 
-    posts = Post.objects.filter(categories__slug=category_slug).order_by('-id').prefetch_related('categories').prefetch_related('photos')
+    allowed_visibilities = ['all']
+    if request.user.is_authenticated:
+        allowed_visibilities.append('user')
+    if request.user.is_superuser:
+        allowed_visibilities.append('admin')
+
+    posts = Post.objects.filter(categories__slug=category_slug, visibility__in=allowed_visibilities).order_by('-id').prefetch_related('categories').prefetch_related('photos')
 
     return render(request, 'posts.html', dict(posts=posts, user=request.user))
 
