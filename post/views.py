@@ -1,16 +1,25 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.http import HttpResponseForbidden
 from post.models import Post
 
 
-def homepage(request):
-    """Main page."""
+def get_allowed_visibilities(user):
+    """Helper function to get allowed visibilities for the user."""
 
     allowed_visibilities = ['all']
-    if request.user.is_authenticated:
+    if user.is_authenticated:
         allowed_visibilities.append('user')
-    if request.user.is_superuser:
+    if user.is_superuser:
         allowed_visibilities.append('admin')
+
+    return allowed_visibilities
+
+
+def homepage(request):
+    """Home page."""
+
+    allowed_visibilities = get_allowed_visibilities(request.user)
 
     posts = Post.objects.filter(visibility__in=allowed_visibilities).order_by('-id').prefetch_related('categories').prefetch_related('photos')
     paginator = Paginator(posts, 10)
@@ -28,14 +37,10 @@ def homepage(request):
     return render(request, 'posts.html', dict(posts=posts, user=request.user, full_text=False, active_page="home"))
 
 
-def categoty(request, category_slug):
-    """Post for specific category."""
+def category(request, category_slug):
+    """Posts for specific category."""
 
-    allowed_visibilities = ['all']
-    if request.user.is_authenticated:
-        allowed_visibilities.append('user')
-    if request.user.is_superuser:
-        allowed_visibilities.append('admin')
+    allowed_visibilities = get_allowed_visibilities(request.user)
 
     posts = Post.objects.filter(categories__slug=category_slug, visibility__in=allowed_visibilities).order_by('-id').prefetch_related('categories').prefetch_related('photos')
 
@@ -43,11 +48,15 @@ def categoty(request, category_slug):
 
 
 def post(request, post_slug):
-    """Post for specific category."""
+    """Post page."""
 
-    post = get_object_or_404(Post.objects.prefetch_related('categories').prefetch_related('photos'), slug=post_slug)
+    post_obj = get_object_or_404(Post.objects.prefetch_related('categories').prefetch_related('photos'), slug=post_slug)
+    allowed_visibilities = get_allowed_visibilities(request.user)
 
-    return render(request, 'posts.html', dict(posts=[post], user=request.user, full_text=True))
+    if post_obj.visibility in allowed_visibilities:
+        return render(request, 'posts.html', dict(posts=[post_obj], user=request.user, full_text=True))
+
+    return HttpResponseForbidden()
 
 
 def about(request):
