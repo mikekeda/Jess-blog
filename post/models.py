@@ -63,7 +63,7 @@ class Post(models.Model):
 
 class Photo(models.Model):
     """Photo model"""
-    title = models.CharField(max_length=60)
+    title = models.CharField(blank=True, max_length=60)
     description = models.TextField(blank=True, null=True)
     image = models.ImageField(upload_to='photos')
     post = models.ForeignKey(Post, related_name='photos')
