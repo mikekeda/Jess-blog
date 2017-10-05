@@ -21,7 +21,9 @@ def homepage(request):
 
     allowed_visibilities = get_allowed_visibilities(request.user)
 
-    posts = Post.objects.filter(visibility__in=allowed_visibilities).order_by('-id').prefetch_related('categories').prefetch_related('photos')
+    posts = Post.objects.filter(visibility__in=allowed_visibilities)\
+        .order_by('-id').prefetch_related('categories')\
+        .prefetch_related('photos')
     paginator = Paginator(posts, 10)
 
     page = request.GET.get('page')
@@ -34,7 +36,12 @@ def homepage(request):
         # If page is out of range (e.g. 9999), deliver last page of results.
         posts = paginator.page(paginator.num_pages)
 
-    return render(request, 'posts.html', dict(posts=posts, user=request.user, full_text=False, active_page="home"))
+    return render(request, 'posts.html', dict(
+        posts=posts,
+        user=request.user,
+        full_text=False,
+        active_page='home'
+    ))
 
 
 def category(request, category_slug):
@@ -42,7 +49,10 @@ def category(request, category_slug):
 
     allowed_visibilities = get_allowed_visibilities(request.user)
 
-    posts = Post.objects.filter(categories__slug=category_slug, visibility__in=allowed_visibilities).order_by('-id').prefetch_related('categories').prefetch_related('photos')
+    posts = Post.objects.filter(
+        categories__slug=category_slug,
+        visibility__in=allowed_visibilities
+    ).order_by('-id').prefetch_related('categories').prefetch_related('photos')
 
     return render(request, 'posts.html', dict(posts=posts, user=request.user))
 
@@ -50,11 +60,18 @@ def category(request, category_slug):
 def post(request, post_slug):
     """Post page."""
 
-    post_obj = get_object_or_404(Post.objects.prefetch_related('categories').prefetch_related('photos'), slug=post_slug)
+    post_obj = get_object_or_404(
+        Post.objects.prefetch_related('categories').prefetch_related('photos'),
+        slug=post_slug
+    )
     allowed_visibilities = get_allowed_visibilities(request.user)
 
     if post_obj.visibility in allowed_visibilities:
-        return render(request, 'posts.html', dict(posts=[post_obj], user=request.user, full_text=True))
+        return render(request, 'posts.html', dict(
+            posts=[post_obj],
+            user=request.user,
+            full_text=True
+        ))
 
     return HttpResponseForbidden()
 

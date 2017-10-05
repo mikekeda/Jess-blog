@@ -35,7 +35,11 @@ class Post(models.Model):
 
     title = models.CharField(max_length=100)
     text = models.TextField(blank=True, null=True)
-    visibility = models.CharField(max_length=6, choices=VISIBILITIES, default='nobody')
+    visibility = models.CharField(
+        max_length=6,
+        choices=VISIBILITIES,
+        default='nobody'
+    )
     categories = models.ManyToManyField(Category, related_name='category')
     created_date = models.DateTimeField(auto_now_add=True)
     changed_date = models.DateTimeField(auto_now=True)
