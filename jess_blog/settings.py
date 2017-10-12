@@ -156,7 +156,7 @@ STATICFILES_DIRS = (
 
 STATIC_ROOT = '/home/voron/sites/cdn/jkeda'
 
-STATIC_URL = 'https://cdn.mkeda.me/jkeda/'
+STATIC_URL = '/static/' if DEBUG else 'https://cdn.mkeda.me/jkeda/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
