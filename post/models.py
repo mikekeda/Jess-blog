@@ -12,11 +12,13 @@ class Category(models.Model):
     changed_date = models.DateTimeField(auto_now=True)
     slug = models.SlugField(editable=False)
 
-    def save(self, *args, **kwargs):
+    def save(self, force_insert=False, force_update=False, using=None,
+             update_fields=None):
         if not self.id:
             self.slug = slugify(self.name)
 
-        super(Category, self).save(*args, **kwargs)
+        super(Category, self).save(force_insert, force_update, using,
+                                   update_fields)
 
     def __str__(self):
         return u'%s' % (
@@ -53,11 +55,13 @@ class Post(models.Model):
             num += 1
         return unique_slug
 
-    def save(self, *args, **kwargs):
+    def save(self, force_insert=False, force_update=False, using=None,
+             update_fields=None):
         if not self.id:
             self.slug = self._get_unique_slug()
 
-        super(Post, self).save(*args, **kwargs)
+        super(Post, self).save(force_insert, force_update, using,
+                               update_fields)
 
     def __str__(self):
         return u'%s' % (
