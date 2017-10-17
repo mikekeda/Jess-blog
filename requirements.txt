@@ -15,6 +15,8 @@ Pillow==4.3.0
 psycopg2==2.7.3.1
 pyflakes==1.6.0
 pylint==1.7.4
+pylint-django==0.7.2
+pylint-plugin-utils==0.2.6
 pytz==2017.2
 requests==2.18.4
 six==1.11.0

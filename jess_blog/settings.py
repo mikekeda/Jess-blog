@@ -28,12 +28,9 @@ def get_env_var(name, default=''):
         return default
     return default
 
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = get_env_var(
@@ -100,7 +97,6 @@ WSGI_APPLICATION = 'jess_blog.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
 DATABASES = {
     'default': {
@@ -114,7 +110,6 @@ DATABASES = {
 }
 
 # Password validation
-# https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -133,7 +128,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # Internationalization
-# https://docs.djangoproject.com/en/1.10/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
@@ -148,7 +142,6 @@ USE_TZ = True
 APPEND_SLASH = True
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATICFILES_DIRS = (
     ('', os.path.join(BASE_DIR, 'static')),
@@ -167,3 +160,5 @@ JENKINS_TASKS = ('django_jenkins.tasks.run_pylint',
                  'django_jenkins.tasks.run_pyflakes',)
 
 PROJECT_APPS = ['post', 'jess_blog']
+
+PYLINT_LOAD_PLUGIN = ['pylint_django']
