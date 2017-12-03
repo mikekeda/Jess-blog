@@ -1,6 +1,6 @@
-from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User, AnonymousUser
 from django.test import TestCase
+from django.urls import reverse
 
 from .models import Post
 from .views import get_allowed_visibilities

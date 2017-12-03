@@ -74,6 +74,9 @@ class Photo(models.Model):
     title = models.CharField(blank=True, max_length=60)
     description = models.TextField(blank=True, null=True)
     image = models.ImageField(upload_to='photos')
-    post = models.ForeignKey(Post, related_name='photos')
+    post = models.ForeignKey(
+        Post,
+        related_name='photos',
+        on_delete=models.CASCADE)
     created_date = models.DateTimeField(auto_now_add=True)
     changed_date = models.DateTimeField(auto_now=True)
