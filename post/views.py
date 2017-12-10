@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
+from django.core.exceptions import PermissionDenied
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.http import HttpResponseForbidden
 from post.models import Post
 
 
@@ -69,7 +69,7 @@ def post(request, post_slug):
             full_text=True
         ))
 
-    return HttpResponseForbidden()
+    raise PermissionDenied
 
 
 def about(request):

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Permission Denied" %}{% endblock title %}
+
+{% block content %}
+    <style>
+        .nb-error {
+            margin: 0 auto;
+            max-width: 480px;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .nb-error .error-code {
+            color: #2d353c;
+            font-size: 96px;
+            line-height: 100px;
+        }
+
+        .nb-error .error-desc {
+            color: #647788;
+            margin-top: 20px;
+        }
+        .nb-error .error-desc p {
+            font-size: 12px;
+        }
+        .nb-error .input-group {
+            margin: 30px 0;
+        }
+    </style>
+
+    <div class="card grey lighten-5">
+        <div class="nb-error">
+            <div class="error-code">403</div>
+            <h3 class="font-bold">{% trans "Permission Denied." %}</h3>
+
+            <div class="error-desc">
+                <p>{% trans "You do not have permission to retrieve the URL or link you requested." %}</p>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
