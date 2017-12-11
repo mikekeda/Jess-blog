@@ -1,8 +1,10 @@
 {% extends parent_template %}
 {% load i18n %}
 {% block content %}
-    <div>
-        <h2>About me:</h2>
-        <p>This is about page</p>
+    <div class="container">
+        <h1 class="mb-4"><wbr>{% trans "About me" %}</h1>
+        <p>{% trans "Personal blog." %}</p>
+        <p>{% trans "Link to the repository:" %} <a href="https://bitbucket.org/voron-raven/jess-blog">https://bitbucket.org/voron-raven/jess-blog</a></p>
+        <p>{% trans "Site owner:" %} <a href="https://www.linkedin.com/in/mykhailokeda/">Mykhailo Keda</a></p>
     </div>
 {% endblock %}
