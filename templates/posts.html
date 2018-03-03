@@ -1,5 +1,14 @@
 {% extends parent_template %}
 {% load i18n %}
+
+{% block title %}
+  {% if full_text %}
+    {{ posts.0.title }}
+  {% else %}
+    {% trans "Jess blog" %}
+  {% endif %}
+{% endblock %}
+
 {% block content %}
   <div class="posts infinite-scroll">
     {% for post in posts %}

@@ -5,7 +5,7 @@ from post.models import Post
 
 
 def get_allowed_visibilities(user):
-    """Helper function to get allowed visibilities for the user."""
+    """ Helper function to get allowed visibilities for the user. """
     allowed_visibilities = ['all']
     if user.is_authenticated:
         allowed_visibilities.append('user')
@@ -16,7 +16,7 @@ def get_allowed_visibilities(user):
 
 
 def homepage(request):
-    """Home page."""
+    """ Home page. """
     allowed_visibilities = get_allowed_visibilities(request.user)
 
     posts = Post.objects.filter(visibility__in=allowed_visibilities)\
@@ -43,7 +43,7 @@ def homepage(request):
 
 
 def category(request, category_slug):
-    """Posts for specific category."""
+    """ Posts for specific category. """
     allowed_visibilities = get_allowed_visibilities(request.user)
 
     posts = Post.objects.filter(
@@ -55,7 +55,7 @@ def category(request, category_slug):
 
 
 def post(request, post_slug):
-    """Post page."""
+    """ Post page. """
     post_obj = get_object_or_404(
         Post.objects.prefetch_related('categories').prefetch_related('photos'),
         slug=post_slug
@@ -73,5 +73,5 @@ def post(request, post_slug):
 
 
 def about(request):
-    """About page."""
+    """ About page. """
     return render(request, 'about.html', dict(active_page='about'))
