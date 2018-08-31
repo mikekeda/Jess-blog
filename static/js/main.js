@@ -21,8 +21,7 @@ $(document).ready(function() {
       else {
         view.css('height', 400);
       }
-    });
-    $('.carousel.carousel-slider').carousel({full_width: true});
+    }).carousel({full_width: true});
 
     /* Infinite scroll */
     $('.infinite-scroll:visible').jscroll({
@@ -42,8 +41,8 @@ $(document).ready(function() {
     if (!$(this).parent('li').hasClass("active")) {
       var $link = $(this);
       $.ajax({
-        url: $link.attr("href") != '/' ? '/ajax' + $link.attr("href") : '/ajax',
-        dataType: 'html',
+        url: $link.attr("href") !== '/' ? '/ajax' + $link.attr("href") : '/ajax',
+        dataType: 'html'
       })
       .done(function(data) {
         $('#content').html(data);

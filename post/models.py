@@ -1,11 +1,9 @@
-from __future__ import unicode_literals
-
 from django.db import models
 from django.template.defaultfilters import slugify
 
 
 class Category(models.Model):
-    """Taxonomy model"""
+    """ Taxonomy model. """
     name = models.CharField(max_length=60, unique=True)
     description = models.TextField(blank=True, null=True)
     created_date = models.DateTimeField(auto_now_add=True)
@@ -21,13 +19,11 @@ class Category(models.Model):
                                    update_fields)
 
     def __str__(self):
-        return u'%s' % (
-            self.name,
-        )
+        return self.name
 
 
 class Post(models.Model):
-    """Post model"""
+    """ Post model. """
     VISIBILITIES = (
         ('nobody', 'Hidden for all'),
         ('admin', 'Visible only for admin'),
@@ -64,13 +60,11 @@ class Post(models.Model):
                                update_fields)
 
     def __str__(self):
-        return u'%s' % (
-            self.title,
-        )
+        return self.title
 
 
 class Photo(models.Model):
-    """Photo model"""
+    """ Photo model. """
     title = models.CharField(blank=True, max_length=60)
     description = models.TextField(blank=True, null=True)
     image = models.ImageField(upload_to='photos')
@@ -80,3 +74,6 @@ class Photo(models.Model):
         on_delete=models.CASCADE)
     created_date = models.DateTimeField(auto_now_add=True)
     changed_date = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.title
