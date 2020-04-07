@@ -5,20 +5,23 @@ Django settings for jess_blog project.
 import os
 import requests
 
-from django_jenkins.tasks import run_pylint
+try:
+    from django_jenkins.tasks import run_pylint
 
 
-class Lint:
-    """
-    Monkey patch to fix
-    TypeError: __init__() got an unexpected keyword argument 'exit'.
-    """
-    class Run(run_pylint.lint.Run):
-        def __init__(self, *args, **kwargs):
-            super().__init__(*args, do_exit=kwargs.pop("exit"), **kwargs)
+    class Lint:
+        """
+        Monkey patch to fix
+        TypeError: __init__() got an unexpected keyword argument 'exit'.
+        """
+        class Run(run_pylint.lint.Run):
+            def __init__(self, *args, **kwargs):
+                super().__init__(*args, do_exit=kwargs.pop("exit"), **kwargs)
 
 
-run_pylint.lint = Lint
+    run_pylint.lint = Lint
+except ImportError:
+    run_pylint = None
 
 SITE_ENV_PREFIX = 'JESS'
 
@@ -54,7 +57,7 @@ SECRET_KEY = get_env_var(
 )
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(get_env_var('DEBUG', True))
+DEBUG = bool(get_env_var('DEBUG', 'True'))
 
 INTERNAL_IPS = (
     '0.0.0.0',
@@ -74,13 +77,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'django_jenkins',
-
     'post',
 ]
 
 if DEBUG:
-    INSTALLED_APPS += ['debug_toolbar']
+    INSTALLED_APPS += ['django_jenkins', 'debug_toolbar']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

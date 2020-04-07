@@ -1,12 +1,10 @@
-# -*- coding: utf-8 -*-
 """
-    Gunicorn config.
+Gunicorn config.
 """
-bind = 'unix:/uwsgi/jess_blog.sock'
+bind = 'unix:/home/voron/socks/jess_blog.sock'
 workers = 1
 timeout = 30
 max_requests = 100
 daemon = False
 umask = '91'
-user = 'nobody'
 loglevel = 'info'
