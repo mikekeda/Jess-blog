@@ -1,5 +1,5 @@
 coverage==4.5.4
-django-debug-toolbar==2.1
+django-debug-toolbar==2.2
 django-jenkins==0.110.0
 pep8==1.7.1
 pyflakes==2.1.1
