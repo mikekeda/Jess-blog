@@ -60,7 +60,6 @@ SECRET_KEY = get_env_var(
 DEBUG = bool(get_env_var('DEBUG', 'True'))
 
 INTERNAL_IPS = (
-    '0.0.0.0',
     '127.0.0.1',
 )
 

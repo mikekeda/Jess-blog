@@ -8,3 +8,4 @@ reports/
 db.sqlite3
 .coverage
 *.pyc
+package-lock.json
