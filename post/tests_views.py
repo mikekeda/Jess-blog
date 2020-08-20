@@ -1,9 +1,12 @@
-from django.contrib.auth.models import User, AnonymousUser
+from django.contrib.auth import get_user_model
+from django.contrib.auth.models import AnonymousUser
 from django.test import TestCase
 from django.urls import reverse
 
-from .models import Post
-from .views import get_allowed_visibilities
+from post.models import Post
+from post.views import get_allowed_visibilities
+
+User = get_user_model()
 
 
 class JessBlogViewTest(TestCase):

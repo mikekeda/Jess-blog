@@ -1,13 +1,13 @@
 /*jshint esversion: 6 */
 $(document).ready(function() {
-  function set_active_link (link) {
-    let a_selector = 'a[href="' + link + '"]';
-    let $link = $(a_selector);
-    $('li.active > a').parent().removeClass("active");
+  function setActiveLink (link) {
+    let aSelector = 'a[href="' + link + '"]';
+    let $link = $(aSelector);
+    $("li.active > a").parent().removeClass("active");
     $link.parent("li").addClass("active");
   }
 
-  function initialize_js () {
+  function initializeJs () {
     /* Materialize */
     // Parallax.
     $(".parallax").parallax();
@@ -47,8 +47,8 @@ $(document).ready(function() {
       })
       .done(function(data) {
         $("#content").html(data);
-        initialize_js();
-        set_active_link($link.attr("href"));
+        initializeJs();
+        setActiveLink($link.attr("href"));
         $(".modal-backdrop.in").remove();
         history.pushState({content: data}, null, $link.attr("href"));
       })
@@ -62,10 +62,10 @@ $(document).ready(function() {
   $(window).on("popstate", function(event) {
     if (event.originalEvent.state.content !== null) {
       $("#content").html(event.originalEvent.state.content);
-      initialize_js();
-      set_active_link (window.location.pathname);
+      initializeJs();
+      setActiveLink (window.location.pathname);
     }
   });
 
-  initialize_js();
+  initializeJs();
 });
