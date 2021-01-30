@@ -55,8 +55,7 @@ class Post(models.Model):
         if not self.id:
             self.slug = self._get_unique_slug()
 
-        super(Post, self).save(force_insert, force_update, using,
-                               update_fields)
+        super().save(force_insert, force_update, using, update_fields)
 
     def __str__(self):
         return self.title
