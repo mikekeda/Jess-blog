@@ -15,8 +15,7 @@ class Category(models.Model):
         if not self.id:
             self.slug = slugify(self.name)
 
-        super(Category, self).save(force_insert, force_update, using,
-                                   update_fields)
+        super().save(force_insert, force_update, using, update_fields)
 
     def __str__(self):
         return self.name
