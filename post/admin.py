@@ -12,15 +12,13 @@ class PhotoInline(admin.TabularInline):
 
 class PostAdmin(admin.ModelAdmin):
     formfield_overrides = {
-        models.TextField: {
-            'widget': forms.Textarea(attrs={'class': 'ckeditor'})
-        }
+        models.TextField: {"widget": forms.Textarea(attrs={"class": "ckeditor"})}
     }
     inlines = (PhotoInline,)
 
     class Media:
-        js = ('bower_components/ckeditor/ckeditor.js',)
-        css = {'all': ('css/admin-fix.css',)}
+        js = ("bower_components/ckeditor/ckeditor.js",)
+        css = {"all": ("css/admin-fix.css",)}
 
 
 admin.site.register(Category)
