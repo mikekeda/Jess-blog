@@ -12,12 +12,15 @@ User = get_user_model()
 class JessBlogViewTest(TestCase):
     def setUp(self):
         # Create usual user.
-        test_user = User.objects.create_user(username="testuser", password="12345")
+        self.password = User.objects.make_random_password()
+        test_user = User.objects.create_user(
+            username="testuser", password=self.password
+        )
         test_user.save()
 
         # Create admin user.
         test_admin = User.objects.create_superuser(
-            username="testadmin", email="myemail@test.com", password="12345"
+            username="testadmin", email="myemail@test.com", password=self.password
         )
         test_admin.save()
 
@@ -79,7 +82,7 @@ class JessBlogViewTest(TestCase):
             reverse("post", kwargs={"post_slug": test_post_authenticated.slug})
         )
         self.assertEqual(resp.status_code, 403)
-        self.client.login(username="testuser", password="12345")
+        self.client.login(username="testuser", password=self.password)
         resp = self.client.get(
             reverse("post", kwargs={"post_slug": test_post_authenticated.slug})
         )
@@ -93,12 +96,12 @@ class JessBlogViewTest(TestCase):
             reverse("post", kwargs={"post_slug": test_post_admin.slug})
         )
         self.assertEqual(resp.status_code, 403)
-        self.client.login(username="testuser", password="12345")
+        self.client.login(username="testuser", password=self.password)
         resp = self.client.get(
             reverse("post", kwargs={"post_slug": test_post_admin.slug})
         )
         self.assertEqual(resp.status_code, 403)
-        self.client.login(username="testadmin", password="12345")
+        self.client.login(username="testadmin", password=self.password)
         resp = self.client.get(
             reverse("post", kwargs={"post_slug": test_post_admin.slug})
         )
