@@ -3,7 +3,7 @@ from django.template.defaultfilters import slugify
 
 
 class Category(models.Model):
-    """ Taxonomy model. """
+    """Taxonomy model."""
 
     name = models.CharField(max_length=60, unique=True)
     description = models.TextField(blank=True, null=True)
@@ -24,7 +24,7 @@ class Category(models.Model):
 
 
 class Post(models.Model):
-    """ Post model. """
+    """Post model."""
 
     VISIBILITIES = (
         ("nobody", "Hidden for all"),
@@ -62,7 +62,7 @@ class Post(models.Model):
 
 
 class Photo(models.Model):
-    """ Photo model. """
+    """Photo model."""
 
     title = models.CharField(blank=True, max_length=60)
     description = models.TextField(blank=True, null=True)
