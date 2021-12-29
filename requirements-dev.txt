@@ -5,4 +5,4 @@ pep8==1.7.1
 pyflakes==2.4.0
 pylint==2.12.2
 pylint-django==2.4.4
-pylint-plugin-utils==0.6
+pylint-plugin-utils==0.7
