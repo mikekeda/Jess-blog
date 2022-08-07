@@ -1,4 +1,4 @@
-coverage==6.4.2
+coverage==6.4.3
 django-debug-toolbar==3.5.0
 -e git+https://github.com/mikekeda/django-jenkins.git#egg=django-jenkins
 pep8==1.7.1
