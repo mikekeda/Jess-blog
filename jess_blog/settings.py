@@ -164,3 +164,4 @@ JENKINS_TASKS = (
 PROJECT_APPS = ["post", "jess_blog"]
 
 PYLINT_LOAD_PLUGIN = ["pylint_django"]
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
