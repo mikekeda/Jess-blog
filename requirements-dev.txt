@@ -1,5 +1,5 @@
-coverage==7.2.7
-django-debug-toolbar==4.1.0
+coverage==7.3.0
+django-debug-toolbar==4.2.0
 -e git+https://github.com/mikekeda/django-jenkins.git#egg=django-jenkins
 pep8==1.7.1
 pyflakes==3.1.0
