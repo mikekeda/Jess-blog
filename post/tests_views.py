@@ -12,7 +12,7 @@ User = get_user_model()
 class JessBlogViewTest(TestCase):
     def setUp(self):
         # Create usual user.
-        self.password = User.objects.make_random_password()
+        self.password = "qwerty"
         test_user = User.objects.create_user(
             username="testuser", password=self.password
         )
