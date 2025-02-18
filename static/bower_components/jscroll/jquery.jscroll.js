@@ -1,12 +1,12 @@
 /*!
  * jScroll - jQuery Plugin for Infinite Scrolling / Auto-Paging
- * @see @link{http://jscroll.com}
+ * @see @link{https://jscroll.com}
  *
- * @copyright 2011-2017, Philip Klauzinski
- * @license Dual licensed under the MIT and GPL Version 2 licenses.
- * @author Philip Klauzinski (http://webtopian.com)
- * @version 2.3.7
- * @requires jQuery v1.4.3+
+ * @copyright Philip Klauzinski
+ * @license Dual licensed under the MIT and GPL Version 2 licenses
+ * @author Philip Klauzinski (https://webtopian.com)
+ * @version 2.4.1
+ * @requires jQuery v1.8.0+
  * @preserve
  */
 (function($) {
@@ -41,7 +41,7 @@
             _$window = $(window),
             _$body = $('body'),
             _$scroll = _isWindow ? _$window : $e,
-            _nextHref = $.trim(_$next.attr('href') + ' ' + _options.contentSelector),
+            _nextHref = $.trim(_$next.prop('href') + ' ' + _options.contentSelector),
 
             // Check if a loading image is defined and preload
             _preloadImage = function() {
@@ -94,7 +94,6 @@
                         iTotalHeight = Math.ceil(iTopHeight - innerTop + _$scroll.height() + iContainerTop);
 
                     if (!data.waiting && iTotalHeight + _options.padding >= $inner.outerHeight()) {
-                        //data.nextHref = $.trim(data.nextHref + ' ' + _options.contentSelector);
                         _debug('info', 'jScroll:', $inner.outerHeight() - iTotalHeight, 'from bottom. Loading next request...');
                         return _load();
                     }
@@ -121,9 +120,9 @@
                 }
                 if (_options.autoTrigger && (_options.autoTriggerUntil === false || _options.autoTriggerUntil > 0)) {
                     _nextWrap($next);
-                     var scrollingBodyHeight = _$body.height() - $e.offset().top,
-                    	scrollingHeight = ($e.height() < scrollingBodyHeight) ? $e.height() : scrollingBodyHeight,
-                    	windowHeight = ($e.offset().top - _$window.scrollTop() > 0) ? _$window.height() - ($e.offset().top - $(window).scrollTop()) : _$window.height();
+                    var scrollingBodyHeight = _$body.height() - $e.offset().top,
+                        scrollingHeight = ($e.height() < scrollingBodyHeight) ? $e.height() : scrollingBodyHeight,
+                        windowHeight = ($e.offset().top - _$window.scrollTop() > 0) ? _$window.height() - ($e.offset().top - $(window).scrollTop()) : _$window.height();
                     if (scrollingHeight <= windowHeight) {
                         _observe();
                     }
@@ -153,7 +152,7 @@
                     .children('.jscroll-added').last()
                     .html('<div class="jscroll-loading" id="jscroll-loading">' + _options.loadingHtml + '</div>')
                     .promise()
-                    .done(function(){
+                    .done(function() {
                         if (_options.loadingFunction) {
                             _options.loadingFunction();
                         }
@@ -167,7 +166,7 @@
                         }
                         var $next = $(this).find(_options.nextSelector).first();
                         data.waiting = false;
-                        data.nextHref = $next.attr('href') ? $.trim($next.attr('href') + ' ' + _options.contentSelector) : false;
+                        data.nextHref = $next.prop('href') ? $.trim($next.prop('href') + ' ' + _options.contentSelector) : false;
                         $('.jscroll-next-parent', $e).remove(); // Remove the previous next link now that we have a new one
                         _checkNextHref();
                         if (_options.callback) {
@@ -214,13 +213,13 @@
     $.fn.jscroll = function(m) {
         return this.each(function() {
             var $this = $(this),
-                data = $this.data('jscroll'), jscroll;
+                data = $this.data('jscroll');
 
             // Instantiate jScroll on this element if it hasn't been already
             if (data && data.initialized) {
                 return;
             }
-            jscroll = new jScroll($this, m);
+            jScroll($this, m);
         });
     };
 

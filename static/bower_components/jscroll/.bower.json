@@ -43,12 +43,12 @@
     "tests",
     "Gruntfile.js"
   ],
-  "version": "2.3.7",
-  "_release": "2.3.7",
+  "version": "2.4.1",
+  "_release": "2.4.1",
   "_resolution": {
     "type": "version",
-    "tag": "v2.3.7",
-    "commit": "de90348db78c0db40b208bd5d5292d2724342321"
+    "tag": "v2.4.1",
+    "commit": "31ad3fac72515138b1e163593566d8351b7cc620"
   },
   "_source": "https://github.com/pklauzinski/jscroll.git",
   "_target": "^2.3.5",

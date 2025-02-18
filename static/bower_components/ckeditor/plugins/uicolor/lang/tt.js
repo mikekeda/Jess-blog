@@ -1,5 +1,5 @@
 ﻿/*
- Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or http://ckeditor.com/license
+ Copyright (c) 2003-2025, CKSource Holding sp. z o.o. All rights reserved.
+ CKEditor 4 LTS ("Long Term Support") is available under the terms of the Extended Support Model.
 */
-CKEDITOR.plugins.setLang("uicolor","tt",{title:"Интерфейс төсләрен сайлау",preview:"Тере карап алу",config:"Бу юлны config.js файлына языгыз",predefined:"Баштан билгеләнгән төсләр җыелмасы"});
+CKEDITOR.plugins.setLang("uicolor","tt",{title:"Интерфейс төсләрен сайлау",options:"Color Options",highlight:"Highlight",selected:"Selected Color",predefined:"Баштан билгеләнгән төсләр җыелмасы",config:"Бу юлны config.js файлына языгыз"});
