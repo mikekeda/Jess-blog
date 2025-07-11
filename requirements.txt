@@ -1,5 +1,5 @@
-Django==5.2.3
+Django==5.2.4
 gunicorn==23.0.0
-Pillow==11.2.1
+Pillow==11.3.0
 psycopg2-binary==2.9.10
 requests==2.32.4
