@@ -17,7 +17,7 @@ class Category(models.Model):
         if not self.id:
             self.slug = slugify(self.name)
 
-        super().save(force_insert, force_update, using, update_fields)
+        super().save(force_insert=force_insert, force_update=force_update, using=using, update_fields=update_fields)
 
     def __str__(self):
         return self.name
@@ -36,7 +36,7 @@ class Post(models.Model):
     title = models.CharField(max_length=100)
     text = models.TextField(blank=True, null=True)
     visibility = models.CharField(max_length=6, choices=VISIBILITIES, default="nobody")
-    categories = models.ManyToManyField(Category, related_name="category")
+    categories = models.ManyToManyField(Category, related_name="category", db_table="post_post_category")
     created_date = models.DateTimeField(auto_now_add=True)
     changed_date = models.DateTimeField(auto_now=True)
     slug = models.SlugField(unique=True, editable=False)
@@ -55,7 +55,7 @@ class Post(models.Model):
         if not self.id:
             self.slug = self._get_unique_slug()
 
-        super().save(force_insert, force_update, using, update_fields)
+        super().save(force_insert=force_insert, force_update=force_update, using=using, update_fields=update_fields)
 
     def __str__(self):
         return self.title
