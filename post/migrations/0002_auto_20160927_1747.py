@@ -17,4 +17,8 @@ class Migration(migrations.Migration):
             old_name='category',
             new_name='categories',
         ),
+        migrations.RunSQL(
+            'ALTER TABLE "post_post_category" RENAME TO "post_post_categories";',
+            reverse_sql='ALTER TABLE "post_post_categories" RENAME TO "post_post_category";'
+        ),
     ]
