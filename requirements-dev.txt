@@ -3,6 +3,6 @@ django-debug-toolbar==6.2.0
 -e git+https://github.com/mikekeda/django-jenkins.git#egg=django-jenkins
 pep8==1.7.1
 pyflakes==3.4.0
-pylint==4.0.4
+pylint==4.0.5
 pylint-django==2.7.0
 pylint-plugin-utils==0.9.0
