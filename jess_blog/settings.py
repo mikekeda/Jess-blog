@@ -158,7 +158,7 @@ APPEND_SLASH = True
 
 STATICFILES_DIRS = (("", os.path.join(BASE_DIR, "static")),)
 
-STATIC_ROOT = "/home/voron/sites/cdn/jess_blog"
+STATIC_ROOT = "/home/debian/sites/cdn/jess_blog"
 
 STATIC_URL = "https://storage.googleapis.com/cdn.mkeda.me/jess_blog/"
 if DEBUG:
