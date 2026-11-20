@@ -11,9 +11,7 @@ class PhotoInline(admin.TabularInline):
 
 
 class PostAdmin(admin.ModelAdmin):
-    formfield_overrides = {
-        models.TextField: {"widget": forms.Textarea(attrs={"class": "ckeditor"})}
-    }
+    formfield_overrides = {models.TextField: {"widget": forms.Textarea(attrs={"class": "ckeditor"})}}
     inlines = (PhotoInline,)
 
     class Media:

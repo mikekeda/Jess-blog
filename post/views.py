@@ -51,9 +51,7 @@ def category(request, category_slug):
     allowed_visibilities = get_allowed_visibilities(request.user)
 
     posts = (
-        Post.objects.filter(
-            categories__slug=category_slug, visibility__in=allowed_visibilities
-        )
+        Post.objects.filter(categories__slug=category_slug, visibility__in=allowed_visibilities)
         .order_by("-id")
         .prefetch_related("categories")
         .prefetch_related("photos")

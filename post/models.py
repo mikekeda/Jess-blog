@@ -11,9 +11,7 @@ class Category(models.Model):
     changed_date = models.DateTimeField(auto_now=True)
     slug = models.SlugField(editable=False)
 
-    def save(
-        self, force_insert=False, force_update=False, using=None, update_fields=None
-    ):
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         if not self.id:
             self.slug = slugify(self.name)
 
@@ -54,9 +52,7 @@ class Post(models.Model):
             num += 1
         return unique_slug
 
-    def save(
-        self, force_insert=False, force_update=False, using=None, update_fields=None
-    ):
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         if not self.id:
             self.slug = self._get_unique_slug()
 
